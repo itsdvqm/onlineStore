@@ -8,7 +8,6 @@ if (!isset($_SESSION['admin'])) {
 }
 
 $admin = new Admin();
-// ✅ FIX: Use Admin's method instead of Product's
 $products = $admin->getAllProducts();
 
 $message = '';
@@ -114,4 +113,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </main>
   </div>
 </body>
+
 </html>
