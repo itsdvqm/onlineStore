@@ -7,20 +7,37 @@ class Product {
 
   public function getAll() {
     $products = [];
-    if (file_exists('../data/products.txt')) {
-      $lines = file('../data/products.txt');
-      foreach ($lines as $line) {
+    $filePath = __DIR__ . '/../data/products.txt';
+    
+    echo "<!-- Debug: Looking for file at: $filePath -->\n";
+    echo "<!-- Debug: File exists: " . (file_exists($filePath) ? 'YES' : 'NO') . " -->\n";
+    
+    if (file_exists($filePath)) {
+      echo "<!-- Debug: File size: " . filesize($filePath) . " -->\n";
+      $lines = file($filePath);
+      echo "<!-- Debug: Number of lines: " . count($lines) . " -->\n";
+      
+      foreach ($lines as $index => $line) {
+        echo "<!-- Debug: Line $index: " . htmlspecialchars($line) . " -->\n";
         if (trim($line)) {
           $data = explode('|', trim($line));
-          $products[] = [
-            'id' => $data[0],
-            'name' => $data[1],
-            'price' => $data[2],
-            'description' => $data[3]
-          ];
+          echo "<!-- Debug: Line $index data count: " . count($data) . " -->\n";
+          if (count($data) >= 4) {
+            $products[] = [
+              'id' => $data[0],
+              'name' => $data[1],
+              'price' => $data[2],
+              'description' => $data[3]
+            ];
+            echo "<!-- Debug: Added product: " . $data[1] . " -->\n";
+          }
         }
       }
+    } else {
+      echo "<!-- Debug: File does not exist or cannot be read -->\n";
     }
+    
+    echo "<!-- Debug: Total products found: " . count($products) . " -->\n";
     return $products;
   }
 

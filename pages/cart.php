@@ -70,7 +70,6 @@ $total = $cart->getTotal();
       <div class="cart-total">
         <h3>Total: $<?php echo number_format($total, 2); ?></h3>
         
-        <!-- ✅ FIX: Separate form for clear cart -->
         <form method="post">
           <button type="submit" name="clear_cart">Clear Cart</button>
         </form>

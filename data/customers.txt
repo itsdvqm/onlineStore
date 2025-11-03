@@ -1,3 +1,4 @@
-1|John Doe|1990-01-01|123 Main St, Hawthorn|john@email.com|123456
-2|Jane Smith|1985-05-15|456 Oak Ave, Richmond|jane@email.com|abcdef
-3|Mike Johnson|1988-12-25|789 Pine St, Melbourne|mike@email.com|mike123
+1|John Doe|01-01-1990|123 Main St, Hawthorn|john@email.com|123456
+2|Jane Smith|15-05-1985|456 Oak Ave, Richmond|jane@email.com|abcdef
+3|Mike Johnson|25-12-1988|789 Pine St, Melbourne|mike@email.com|mike123
+4|Minh Dang|13-04-2005|123 Young St|minh@ggg.com|130405

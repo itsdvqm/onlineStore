@@ -60,7 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         
         <p>Don't have an account? <a href="register.php">Register here</a></p>
-        <p>Admin login? Use admin credentials</p>
+
+        <p>Customer login: minh@ggg.com/130405</p>
+        <p>Admin login: admin/admin123</p>
       </div>
     </main>
   </div>

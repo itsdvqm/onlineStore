@@ -32,6 +32,22 @@ require_once '../classes/Cart.php';
 
     <main>
       <h2>Our Products</h2>
+      
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+        if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
+          $cart = new Cart();
+          if ($cart->add($_POST['product_id'])) {
+            echo "<p class='success'>Product added to cart!</p>";
+          } else {
+            echo "<p class='error'>Failed to add product to cart!</p>";
+          }
+        } else {
+          echo "<p class='error'>Please login to add products to cart.</p>";
+        }
+      }
+      ?>
+
       <div class="products">
         <?php
         $product = new Product();
@@ -52,16 +68,6 @@ require_once '../classes/Cart.php';
               </form>
             </div>
             ";
-          }
-        }
-        
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
-          if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
-            $cart = new Cart();
-            $cart->add($_POST['product_id']);
-            echo "<p class='success'>Product added to cart!</p>";
-          } else {
-            echo "<p class='error'>Please login to add products to cart.</p>";
           }
         }
         ?>

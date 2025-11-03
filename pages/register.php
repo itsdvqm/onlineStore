@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           
           <div class="form-group">
             <label>Date of Birth:</label>
-            <input type="date" name="dob" required>
+            <input type="text" name="dob" pattern="\d{2}-\d{2}-\d{4}" placeholder="dd-mm-yyyy" required>
           </div>
           
           <div class="form-group">

@@ -7,12 +7,23 @@ class Customer extends User {
 
   public function register($data) {
     $customers = $this->readCustomers();
-    
+
     // Generate new ID
     $newId = 1;
     if (!empty($customers)) {
       $lastCustomer = end($customers);
       $newId = intval($lastCustomer['id']) + 1;
+    }
+
+    // Validate date format (dd-mm-yyyy)
+    if (!preg_match('/^\d{2}-\d{2}-\d{4}$/', $data['dob'])) {
+      return false; // Invalid date format
+    }
+
+    // Validate real date
+    $dateParts = explode('-', $data['dob']);
+    if (count($dateParts) !== 3 || !checkdate($dateParts[1], $dateParts[0], $dateParts[2])) {
+      return false;
     }
     
     // Check if email already exists
@@ -32,9 +43,10 @@ class Customer extends User {
       'password' => $data['password']
     ];
     
-    // Save to file
+    $filePath = __DIR__ . '/../data/customers.txt';
     $line = implode('|', $customerData) . "\n";
-    file_put_contents('../data/customers.txt', $line, FILE_APPEND | LOCK_EX);
+    
+    file_put_contents($filePath, $line, FILE_APPEND | LOCK_EX);
     
     return true;
   }
