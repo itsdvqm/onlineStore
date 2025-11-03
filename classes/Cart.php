@@ -2,8 +2,7 @@
 class Cart {
   private $items = [];
 
-  public function __construct() {
-    session_start();
+  public function __construct() {    
     if (!isset($_SESSION['cart'])) {
       $_SESSION['cart'] = [];
     }

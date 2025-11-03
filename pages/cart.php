@@ -40,37 +40,46 @@ $total = $cart->getTotal();
     </header>
 
     <main>
-      <?php if (empty($items)): ?>
-        <p>Your cart is empty.</p>
-      <?php else: ?>
-        <div class="cart-items">
-          <form method="post">
-            <?php foreach ($items as $item): ?>
-              <div class="cart-item">
-                <h3><?php echo $item['name']; ?></h3>
-                <p>Price: $<?php echo $item['price']; ?></p>
-                <div class="quantity-control">
-                  <label>Quantity:</label>
-                  <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1">
-                  <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
-                  <button type="submit" name="update_quantity">Update</button>
-                </div>
-                <p>Subtotal: $<?php echo number_format($item['price'] * $item['quantity'], 2); ?></p>
-                <button type="submit" name="remove_item" value="<?php echo $item['id']; ?>">Remove</button>
-              </div>
-            <?php endforeach; ?>
+  <?php if (empty($items)): ?>
+    <p>Your cart is empty.</p>
+  <?php else: ?>
+    <div class="cart-items">
+      <?php foreach ($items as $item): ?>
+        <div class="cart-item">
+          <h3><?php echo $item['name']; ?></h3>
+          <p>Price: $<?php echo $item['price']; ?></p>
+          
+          <form method="post" class="quantity-form">
+            <div class="quantity-control">
+              <label>Quantity:</label>
+              <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1">
+              <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
+              <button type="submit" name="update_quantity">Update</button>
+            </div>
           </form>
           
-          <div class="cart-total">
-            <h3>Total: $<?php echo number_format($total, 2); ?></h3>
-            <form method="post">
-              <button type="submit" name="clear_cart">Clear Cart</button>
-            </form>
-            <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
-          </div>
+          <p>Subtotal: $<?php echo number_format($item['price'] * $item['quantity'], 2); ?></p>
+          
+          <form method="post" class="remove-form">
+            <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
+            <button type="submit" name="remove_item">Remove</button>
+          </form>
         </div>
-      <?php endif; ?>
-    </main>
+      <?php endforeach; ?>
+      
+      <div class="cart-total">
+        <h3>Total: $<?php echo number_format($total, 2); ?></h3>
+        
+        <!-- ✅ FIX: Separate form for clear cart -->
+        <form method="post">
+          <button type="submit" name="clear_cart">Clear Cart</button>
+        </form>
+        
+        <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
+      </div>
+    </div>
+  <?php endif; ?>
+</main>
   </div>
 </body>
 </html>

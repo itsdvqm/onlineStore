@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../../classes/Admin.php';
-require_once '../../classes/Product.php';
 
 if (!isset($_SESSION['admin'])) {
   header('Location: admin_login.php');
@@ -9,7 +8,8 @@ if (!isset($_SESSION['admin'])) {
 }
 
 $admin = new Admin();
-$product = new Product();
+// ✅ FIX: Use Admin's method instead of Product's
+$products = $admin->getAllProducts();
 
 $message = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $message = "Failed to update product!";
     }
   }
+  
+  $products = $admin->getAllProducts();
 }
-
-$products = $product->getAll();
 ?>
 
 <!DOCTYPE html>

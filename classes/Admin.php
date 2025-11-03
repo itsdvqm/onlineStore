@@ -15,10 +15,10 @@ class Admin extends User {
     }
     
     // Create product line
-    $productLine = $newId . '|' . $productData['name'] . '|' . $productData['price'] . '|' . $productData['description'] . "\n";
+    $productLine = "\n" . $newId . '|' . $productData['name'] . '|' . $productData['price'] . '|' . $productData['description'];
     
-    // Append to file
-    file_put_contents('../data/products.txt', $productLine, FILE_APPEND | LOCK_EX);
+    $filePath = __DIR__ . '/../data/products.txt';
+    file_put_contents($filePath, $productLine, FILE_APPEND | LOCK_EX);
     return true;
   }
 
@@ -37,7 +37,8 @@ class Admin extends User {
     }
     
     if ($updated) {
-      file_put_contents('../data/products.txt', $newContent, LOCK_EX);
+      $filePath = __DIR__ . '/../data/products.txt';
+      file_put_contents($filePath, $newContent, LOCK_EX);
       return true;
     }
     
@@ -50,8 +51,9 @@ class Admin extends User {
 
   private function readProducts() {
     $products = [];
-    if (file_exists('../data/products.txt')) {
-      $lines = file('../data/products.txt');
+    $filePath = __DIR__ . '/../data/products.txt';
+    if (file_exists($filePath)) {
+      $lines = file($filePath);
       foreach ($lines as $line) {
         if (trim($line)) {
           $data = explode('|', trim($line));

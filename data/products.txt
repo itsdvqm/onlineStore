@@ -4,3 +4,6 @@
 4|Eggs|4.00|Free range eggs 12 pieces
 5|Coffee|8.50|Premium ground coffee 200g
 6|Chocolate|2.50|Dark chocolate bar 100g
+7|Sausage|3.00|Sausage sausage
+
+8|Coca cola|3.00|Drink coca cola yummy
