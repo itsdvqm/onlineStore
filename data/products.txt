@@ -1,0 +1,6 @@
+1|Apple|1.50|Fresh red apples from local farm
+2|Milk|2.00|Fresh milk 1L bottle
+3|Bread|3.50|Whole wheat bread 500g
+4|Eggs|4.00|Free range eggs 12 pieces
+5|Coffee|8.50|Premium ground coffee 200g
+6|Chocolate|2.50|Dark chocolate bar 100g

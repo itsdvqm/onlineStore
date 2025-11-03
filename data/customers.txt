@@ -1,0 +1,3 @@
+1|John Doe|1990-01-01|123 Main St, Hawthorn|john@email.com|123456
+2|Jane Smith|1985-05-15|456 Oak Ave, Richmond|jane@email.com|abcdef
+3|Mike Johnson|1988-12-25|789 Pine St, Melbourne|mike@email.com|mike123
